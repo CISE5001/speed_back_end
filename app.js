@@ -8,7 +8,7 @@ const connectDB = require('./config/db');
 const cors = require('cors');
 
 // routes
-const books = require('./routes/api/books');
+const articles = require('./routes/api/articles');
 
 const app = express();
 
@@ -24,7 +24,7 @@ app.use(express.json({ extended: false }));
 app.get('/', (req, res) => res.send('Hello world!'));
 
 // use Routes
-app.use('/api/books', books);
+app.use('/api/articles', articles);
 
 const port = process.env.PORT || 8082;
 
