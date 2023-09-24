@@ -4,13 +4,10 @@ const mongoose = require('mongoose');
 
 const topicSchema = new mongoose.Schema(
   {
-    title: String,
-    authors: String,
-    source: String,
-    pubyear: String,
-    doi: String,
-    claim: String, 
-    evidence: String
+    dateSubmitted: String,
+    articleTitle: String,
+    articleCitation: String,
+    summary: String,
 },
 {
     timestamps: true,
