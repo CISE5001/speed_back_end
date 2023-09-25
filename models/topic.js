@@ -8,6 +8,7 @@ const topicSchema = new mongoose.Schema(
     articleTitle: String,
     articleCitation: String,
     summary: String,
+    status: String,
 },
 {
     timestamps: true,
