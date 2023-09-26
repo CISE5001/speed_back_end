@@ -6,6 +6,7 @@ const router = express.Router();
 // Load topic model
 const Topic = require('../../models/topic');
 const submittedArticles = require('../../models/submittedArticles');
+const approvedArticles = require('../../models/approvedArticles');
 
 // @route GET api/topics/test
 // @description tests topics route
@@ -25,6 +26,13 @@ router.get('/', (req, res) => {
 router.get('/submittedArticles', (req, res) => {
   submittedArticles.find()
     .then(submittedArticles => res.json({submittedArticles}))
+    .catch(err => res.status(404).json({ noarticlesfound: 'No articles found' }));
+});
+
+//GET approved articles for moderator page.
+router.get('/approvedArticles', (req, res) => {
+  approvedArticles.find()
+    .then(approvedArticles => res.json({approvedArticles}))
     .catch(err => res.status(404).json({ noarticlesfound: 'No articles found' }));
 });
 
@@ -50,6 +58,13 @@ router.post('/', (req, res) => {
 router.post('/submittedArticles', (req, res) => {
   submittedArticles.create(req.body)
     .then(submittedArticles => res.json({ msg: 'article added successfully' }))
+    .catch(err => res.status(400).json({ error: 'Unable to add this article' }));
+});
+
+//POST for arrpoved articles from user page
+router.post('/approvedArticles', (req, res) => {
+  approvedArticles.create(req.body)
+    .then(approvedArticles => res.json({ msg: 'article added successfully' }))
     .catch(err => res.status(400).json({ error: 'Unable to add this article' }));
 });
 
