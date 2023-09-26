@@ -69,18 +69,18 @@ router.post('/approvedArticles', (req, res) => {
 });
 
 // Update approved api
-router.put('/approvedArticles/approveArticle/:id', (req, res) => {
-  approvedArticles.findByIdAndUpdate(req.params.id, {status: "Approved"})
-    .then(approvedArticles => res.json({ msg: 'Updated successfully' }))
+router.put('/submittedArticles/approveArticle/:id', (req, res) => {
+  submittedArticles.findByIdAndUpdate(req.params.id, {status: "Approved"})
+    .then(submittedArticles => res.json({ msg: 'Updated successfully' }))
     .catch(err =>
       res.status(400).json({ error: 'Unable to update the Database' })
     );
 });
 
 // Update reject api
-router.put('/approvedArticles/rejectArticle/:id', (req, res) => {
-  approvedArticles.findByIdAndUpdate(req.params.id, {status: "Rejected"})
-    .then(approvedArticles => res.json({ msg: 'Updated successfully' }))
+router.put('/submittedArticles/rejectArticle/:id', (req, res) => {
+  submittedArticles.findByIdAndUpdate(req.params.id, {status: "Rejected"})
+    .then(submittedArticles => res.json({ msg: 'Updated successfully' }))
     .catch(err =>
       res.status(400).json({ error: 'Unable to update the Database' })
     );
