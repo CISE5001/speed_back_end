@@ -5,6 +5,7 @@ const router = express.Router();
 
 // Load topic model
 const Topic = require('../../models/topic');
+const submittedArticles = require('../../models/submittedArticles');
 
 // @route GET api/topics/test
 // @description tests topics route
@@ -18,6 +19,13 @@ router.get('/', (req, res) => {
   Topic.find()
     .then(topics => res.json({topics}))
     .catch(err => res.status(404).json({ notopicsfound: 'No topics found' }));
+});
+
+//GET submitted articles for moderator page.
+router.get('/submittedArticles', (req, res) => {
+  submittedArticles.find()
+    .then(submittedArticles => res.json({submittedArticles}))
+    .catch(err => res.status(404).json({ noarticlesfound: 'No articles found' }));
 });
 
 // @route GET api/topics/:id
@@ -36,6 +44,13 @@ router.post('/', (req, res) => {
   Topic.create(req.body)
     .then(topic => res.json({ msg: 'topic added successfully' }))
     .catch(err => res.status(400).json({ error: 'Unable to add this topic' }));
+});
+
+//POST for submitted articles from user page
+router.post('/submittedArticles', (req, res) => {
+  submittedArticles.create(req.body)
+    .then(submittedArticles => res.json({ msg: 'article added successfully' }))
+    .catch(err => res.status(400).json({ error: 'Unable to add this article' }));
 });
 
 // @route GET api/topics/:id
