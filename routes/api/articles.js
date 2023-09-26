@@ -68,12 +68,19 @@ router.post('/approvedArticles', (req, res) => {
     .catch(err => res.status(400).json({ error: 'Unable to add this article' }));
 });
 
-// @route GET api/topics/:id
-// @description Update topic
-// @access Public
-router.put('/:id', (req, res) => {
-  Topic.findByIdAndUpdate(req.params.id, req.body)
-    .then(topic => res.json({ msg: 'Updated successfully' }))
+// Update approved api
+router.put('/approvedArticles/approveArticle/:id', (req, res) => {
+  approvedArticles.findByIdAndUpdate(req.params.id, {status: "Approved"})
+    .then(approvedArticles => res.json({ msg: 'Updated successfully' }))
+    .catch(err =>
+      res.status(400).json({ error: 'Unable to update the Database' })
+    );
+});
+
+// Update reject api
+router.put('/approvedArticles/rejectArticle/:id', (req, res) => {
+  approvedArticles.findByIdAndUpdate(req.params.id, {status: "Rejected"})
+    .then(approvedArticles => res.json({ msg: 'Updated successfully' }))
     .catch(err =>
       res.status(400).json({ error: 'Unable to update the Database' })
     );
