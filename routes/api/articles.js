@@ -36,12 +36,10 @@ router.get('/approvedArticles', (req, res) => {
     .catch(err => res.status(404).json({ noarticlesfound: 'No articles found' }));
 });
 
-// @route GET api/topics/:id
-// @description Get single topic by id
-// @access Public
-router.get('/:id', (req, res) => {
-  Topic.findById(req.params.id)
-    .then(topic => res.json(topic))
+// GET approvedArticles by id
+router.get('/approvedArticles/:id', (req, res) => {
+  approvedArticles.findById(req.params.id)
+    .then(approvedArticles => res.json(approvedArticles))
     .catch(err => res.status(404).json({ notopicfound: 'No topic found' }));
 });
 
