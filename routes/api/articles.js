@@ -84,6 +84,14 @@ router.put('/submittedArticles/rejectArticle/:id', (req, res) => {
     );
 });
 
+router.put('/approvedArticles/completed/:id', (req, res) => {
+  approvedArticles.findByIdAndUpdate(req.params.id, {status: "Completed"})
+    .then(approvedArticles => res.json({ msg: 'Updated successfully' }))
+    .catch(err =>
+      res.status(400).json({ error: 'Unable to update the Database' })
+    );
+});
+
 // @route GET api/topics/:id
 // @description Delete topic by id
 // @access Public
