@@ -108,4 +108,11 @@ router.delete('/submittedArticles/:id', (req, res) => {
     .catch(err => res.status(404).json({ error: 'No such a topic' }));
 });
 
+//Delete for Analyst articles.
+router.delete('/approvedArticles/:id', (req, res) => {
+  approvedArticles.findByIdAndRemove(req.params.id, req.body)
+    .then(approvedArticles => res.json({ mgs: 'topic entry deleted successfully' }))
+    .catch(err => res.status(404).json({ error: 'No such a topic' }));
+});
+
 module.exports = router;
