@@ -101,4 +101,11 @@ router.delete('/:id', (req, res) => {
     .catch(err => res.status(404).json({ error: 'No such a topic' }));
 });
 
+//Delete for Moderator page.
+router.delete('/submittedArticles/:id', (req, res) => {
+  submittedArticles.findByIdAndRemove(req.params.id, req.body)
+    .then(submittedArticles => res.json({ mgs: 'topic entry deleted successfully' }))
+    .catch(err => res.status(404).json({ error: 'No such a topic' }));
+});
+
 module.exports = router;
