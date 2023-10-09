@@ -6,8 +6,10 @@ const topicSchema = new mongoose.Schema(
   {
     dateSubmitted: String,
     articleTitle: String,
+    articlePractice: String,
+    articleClaim: String,
+    articleEvidence: String,
     articleCitation: String,
-    summary: String,
     status: String,
 },
 {
